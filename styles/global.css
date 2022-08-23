@@ -7,11 +7,53 @@
     --placeholder-color: rgb(136, 136, 153);
     --offset-color: rgb(217, 236, 217);
     --action-color: rgb(77, 132, 252);
+
+    --main-font: 'Space Grotesk', sans-serif;;
 }
 
 body {
     height: 100vh;
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: var(--main-font);
+}
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form {
+    margin: 40px;
+}
+
+form input[type='number'] {
+    width: 100px;
+}
+
+ul {
+    text-align: center;
+    margin-top: 24px;
+}
+
+li {
+    margin: 8px 0;
+    padding: 8px;
+    border: 1px solid rgb(185, 185, 185);
+    border-radius: 1em;
+}
+
+input, button {
+    border-radius: 1em;
+    padding: 8px;
+    border: 1.2px solid black;
+    font-family: var(--main-font);
+    margin: 0 8px;
+    font-weight: bold;
+}
+
+button {
+    background: #9bc506;
+    cursor: pointer;
 }
 
 .page-header {
@@ -36,4 +78,8 @@ body {
 .page-header h1, .title {
     font-size: 1.7em;
     margin-left: 12px;
+}
+
+#list-div {
+    max-width: 500px;
 }
