@@ -44,3 +44,7 @@ export async function signOutUser() {
 }
 
 /* Data functions */
+
+function checkError({ data, error }) {
+    return error ? console.error(error) : data;
+}
