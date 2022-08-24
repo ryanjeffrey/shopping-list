@@ -83,3 +83,15 @@ button {
 #list-div {
     max-width: 500px;
 }
+
+#delete-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#delete-button {
+    margin: 24px auto;
+    background-color: rgb(214, 0, 0);
+    color: white;
+}
