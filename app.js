@@ -1,6 +1,6 @@
 // importing other stuff, utility functions for:
 // working with supabase:
-import { checkAuth, signOutUser, addItem, getItems, updateItem } from './fetch-utils.js';
+import { checkAuth, signOutUser, addItem, getItems, updateItem, deleteAllItems } from './fetch-utils.js';
 import { renderShoppingList } from './render-utils.js';
 // pure rendering (data --> DOM):
 
@@ -18,6 +18,7 @@ signOutLink.addEventListener('click', signOutUser);
 // grab needed DOM elements on page:
 const listDiv = document.getElementById('list-div');
 const addItemForm = document.querySelector('.add-item-form');
+const deleteButton = document.getElementById('delete-button');
 
 addItemForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -76,3 +77,13 @@ async function loadData() {
 loadData();
 
 // events:
+deleteButton.addEventListener('click', async () => {
+    const message = 'Are you sure you want to delete all shopping list items?';
+    if (!confirm(message)) return;
+    const response = await deleteAllItems();
+
+    if (!response.error) {
+        list = [];
+    }
+    displayList();
+});
