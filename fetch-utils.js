@@ -44,6 +44,20 @@ export async function signOutUser() {
 }
 
 /* Data functions */
+export async function addItem(item, quantity) {
+    const response = await client
+        .from('shopping_list')
+        .insert({
+            item: item,
+            quantity: quantity })
+        .single();
+    return checkError(response);
+}
+
+export async function getItems() {
+    const response = await client.from('shopping_list').select('*');
+    return checkError(response);
+}
 
 function checkError({ data, error }) {
     return error ? console.error(error) : data;
