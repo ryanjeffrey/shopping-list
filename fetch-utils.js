@@ -48,8 +48,8 @@ export async function addItem(item, quantity) {
     const response = await client
         .from('shopping_list')
         .insert({
-            item: item,
-            quantity: quantity })
+            item,
+            quantity })
         .single();
     return checkError(response);
 }
