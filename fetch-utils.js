@@ -64,6 +64,11 @@ export async function updateItem(id) {
     return checkError(response);
 }
 
+export async function deleteAllItems() {
+    const response = await client.from('shopping_list').delete().match({ user_id: client.auth.user().id });
+    return checkError(response);
+}
+
 function checkError({ data, error }) {
     return error ? console.error(error) : data;
 }
