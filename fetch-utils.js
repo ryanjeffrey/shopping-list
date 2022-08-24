@@ -59,6 +59,11 @@ export async function getItems() {
     return checkError(response);
 }
 
+export async function updateItem(id) {
+    const response = await client.from('shopping_list').update({ bought: true }).match({ id });
+    return checkError(response);
+}
+
 function checkError({ data, error }) {
     return error ? console.error(error) : data;
 }
