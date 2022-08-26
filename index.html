@@ -9,27 +9,40 @@
     <script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600&family=Titillium+Web:wght@200;400;600&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/reset.css" />
     <link rel="stylesheet" href="styles/global.css" />
-    <title>Supabase Web App</title>
+    <title>Shopping List</title>
 </head>
 
 <body>
     <header class="page-header">
-        <img class="logo" src="/assets/html_css_js.png">
-        <p class="title">Supabase Web App</p>
+        <img src="./assets/basket.png" class="logo"/>
+        <h1 class="title">Shopping List</h1>
         <nav>
             <a id="sign-out-link" href="auth">Sign Out</a>
         </nav>
     </header>
 
     <main>
+        <section id="shopping-list-section">
+            <form class="add-item-form">
+                <input name="item" placeholder="Enter Item..." required />
+                <input name="quantity" type="number" placeholder="QTY" required />
+                <button>Add Item</button>
+            </form>
 
+            <div id="list-div">
+                
+            </div>
+
+            <div id="delete-button-container">
+                <button id="delete-button">Delete All Items</button>
+            </div>
+        </section>
     </main>
 
-    <footer>&copy;2022 Alchemy Software Developer</footer>
+    <footer></footer>
 
     <script type="module" src="app.js"></script>
 </body>

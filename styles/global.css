@@ -7,29 +7,61 @@
     --placeholder-color: rgb(136, 136, 153);
     --offset-color: rgb(217, 236, 217);
     --action-color: rgb(77, 132, 252);
+
+    --main-font: 'Space Grotesk', sans-serif;;
 }
 
 body {
     height: 100vh;
-    font-family: 'Rubik', san-serif;
-    background: var(--background);
-    display: grid;
-    grid-template-rows: auto 1fr auto;
+    font-family: var(--main-font);
+}
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+form {
+    margin: 40px;
+}
+
+form input[type='number'] {
+    width: 100px;
+}
+
+ul {
+    text-align: center;
+    margin-top: 24px;
+}
+
+li {
+    margin: 8px 0;
+    padding: 8px;
+    border: 1px solid rgb(185, 185, 185);
+    border-radius: 1em;
+}
+
+input, button {
+    border-radius: 1em;
+    padding: 8px;
+    border: 1.2px solid black;
+    font-family: var(--main-font);
+    margin: 0 8px;
+    font-weight: bold;
+}
+
+button {
+    background: #9bc506;
+    cursor: pointer;
 }
 
 .page-header {
     position: sticky;
     top: 0;
-    padding: 0 10px;
+    padding: 0 40px;
     display: flex;
     align-items: center;
-    background-color: var(--header-background);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-}
-
-.page-header .title {
-    font-size: 1.2em;
-    font-weight: 800;
 }
 
 .page-header nav {
@@ -39,16 +71,31 @@ body {
     gap: 10px;
 }
 
-main {
-    padding: 20px;
+.page-header img {
+    height: 40px;
 }
 
-footer {
-    position: sticky;
-    bottom: 0;
-    padding: 7px 20px;
-    font-size: 0.8em;
+.page-header h1, .title {
+    font-size: 1.7em;
+    margin-left: 12px;
+}
+
+#list-div {
+    max-width: 500px;
+}
+
+.bought {
+    text-decoration: line-through;
+}
+
+#delete-button-container {
     display: flex;
-    justify-content: flex-end;
-    background-color: var(--footer-background);
+    align-items: center;
+    justify-content: center;
+}
+
+#delete-button {
+    margin: 24px auto;
+    background-color: rgb(214, 0, 0);
+    color: white;
 }

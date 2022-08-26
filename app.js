@@ -1,6 +1,7 @@
 // importing other stuff, utility functions for:
 // working with supabase:
-import { checkAuth, signOutUser } from './fetch-utils.js';
+import { checkAuth, signOutUser, addItem, getItems, updateItem, deleteAllItems } from './fetch-utils.js';
+import { renderShoppingList } from './render-utils.js';
 // pure rendering (data --> DOM):
 
 /*  "boiler plate" auth code */
@@ -15,9 +16,74 @@ signOutLink.addEventListener('click', signOutUser);
 /* end "boiler plate auth code" */
 
 // grab needed DOM elements on page:
+const listDiv = document.getElementById('list-div');
+const addItemForm = document.querySelector('.add-item-form');
+const deleteButton = document.getElementById('delete-button');
+
+addItemForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(addItemForm);
+    const item = formData.get('item');
+    const quantity = formData.get('quantity');
+    
+    const response = await addItem(item, quantity);
+    
+    addItemForm.reset();
+    
+    const error = response.error;
+    
+    if (error) {
+        console.log(error.message);
+    } else {
+        displayList();
+    }
+});
 
 // local state:
+let list = [];
 
+async function handleUpdate(item) {
+    const update = {
+        bought: true
+    };
+    const response = await updateItem(item.id, update);
+    if (response.error) {
+        console.log(response.error);
+    } else {
+        const bought = response.data;
+        const index = list.indexOf(item);
+        list[index] = bought;
+
+        displayList();
+    }
+}
 // display functions:
+async function displayList() {
+    const items = await getItems();
+    
+    listDiv.innerHTML = '';
+
+    for (let item of items) {
+        const renderedItems = renderShoppingList(item, handleUpdate);
+        listDiv.append(renderedItems);
+    }
+}
+
+async function loadData() {
+    await displayList();
+}
+
+loadData();
 
 // events:
+deleteButton.addEventListener('click', async () => {
+    const message = 'Are you sure you want to delete all shopping list items?';
+    if (!confirm(message)) return;
+    const response = await deleteAllItems();
+
+    if (!response.error) {
+        list = [];
+    }
+    displayList();
+});
